@@ -4,7 +4,23 @@ import LiveLocationMap from './components/map';
 import LiveTrackerLocationMap from './components/map-tracker';
 
 function App() {
-	const [isOpen, setIsOpen] = useState(false);
+	const [button1, setButton1] = useState(false);
+	const [button2, setButton2] = useState(true);
+
+	function b1Click() {
+		setButton1(prev => !prev);
+		setButton2(false);
+	}
+
+	function b2Click() {
+		setButton1(false);
+		setButton2(prev => !prev);
+	}
+
+	const handleRefresh = () => {
+		setButton2(true);
+		window.location.reload();
+	};
 
 	return (
 		<>
@@ -12,12 +28,36 @@ function App() {
 				<div>
 					<button
 						type='button'
-						onClick={() => setIsOpen(!isOpen)}
-						style={{ cursor: 'pointer', margin: '20px', padding: '5px', borderRadius: '10px' }}
+						onClick={b1Click}
+						style={{
+							cursor: 'pointer',
+							margin: '20px',
+							padding: '5px',
+							borderRadius: '10px',
+							background: button1 ? 'cyan' : 'white',
+						}}
 					>
-						map
+						Live Location
 					</button>
-					<span>{isOpen ? 'Live Tracker' : 'Live Location'}</span>
+					<button
+						type='button'
+						onClick={b2Click}
+						style={{
+							cursor: 'pointer',
+							margin: '20px',
+							padding: '5px',
+							borderRadius: '10px',
+							background: button2 ? 'cyan' : 'white',
+						}}
+					>
+						Live Tracker
+					</button>
+
+					{button2 && (
+						<button type='button' onClick={handleRefresh} style={{ marginLeft: '20px' }}>
+							Refresh
+						</button>
+					)}
 				</div>
 
 				<span style={{ fontSize: '18px', color: 'orange' }}>
@@ -26,7 +66,8 @@ function App() {
 			</div>
 
 			{/* map */}
-			{isOpen ? <LiveTrackerLocationMap /> : <LiveLocationMap />}
+			{button1 && <LiveTrackerLocationMap />}
+			{button2 && <LiveLocationMap />}
 		</>
 	);
 }

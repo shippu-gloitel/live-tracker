@@ -50,7 +50,8 @@ export default function useLocationTracker(positionOptions?: IPositionOptions): 
 				setError(`Error while tracking location: ${error}`);
 			}
 		})();
-	}, [locations.length, positionOptions]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [positionOptions]);
 
 	return { error, initialLocation, locations };
 }
