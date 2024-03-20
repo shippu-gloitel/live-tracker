@@ -37,7 +37,7 @@ function App() {
 							background: button1 ? 'cyan' : 'white',
 						}}
 					>
-						Live Location
+						Live Tracker
 					</button>
 					<button
 						type='button'
@@ -50,7 +50,7 @@ function App() {
 							background: button2 ? 'cyan' : 'white',
 						}}
 					>
-						Live Tracker
+						Live Location
 					</button>
 
 					{button2 && (

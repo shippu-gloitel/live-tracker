@@ -34,7 +34,7 @@ export default function useLocationTracker(positionOptions?: IPositionOptions): 
 							if (locations.length === 0) {
 								setInitialLocation({ latitude, longitude });
 							}
-							setLocations(prev => [...prev, { latitude, longitude }]);
+							setLocations([...locations, { latitude, longitude }]);
 						},
 						onError,
 						{
@@ -52,6 +52,8 @@ export default function useLocationTracker(positionOptions?: IPositionOptions): 
 		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [positionOptions]);
+
+	console.log('<<<<<locations>>>>>', locations);
 
 	return { error, initialLocation, locations };
 }
