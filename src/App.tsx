@@ -25,7 +25,7 @@ function App() {
 	return (
 		<>
 			<div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-				<div>
+				<div className=''>
 					<button
 						type='button'
 						onClick={b1Click}
